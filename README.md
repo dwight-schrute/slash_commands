@@ -1,4 +1,6 @@
 # slash_commands
+![build workflow](https://github.com/indiainvestments/slash_commands/actions/workflows/deno-lint-tests.yml/badge.svg)  
+
 Slash commands for india investment server to search the wiki. 
 
 # Requirements for environment variables
