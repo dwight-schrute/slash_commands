@@ -3,7 +3,7 @@ import { Embed } from "https://raw.githubusercontent.com/harmonyland/harmony/ce4
 import { randomHexColorGen } from "./utils.ts";
 import { GitbookSpaceClient } from "./gitbook_client.ts";
 import { EmbedAuthor } from "https://raw.githubusercontent.com/indiainvestments/harmony/main/deploy.ts";
-import { GitbookSearchNode } from "./types/index.d.ts";
+import { GitbookPage, GitbookSearchNode } from "./types/index.d.ts";
 import { Cache } from "./cache/page_desc_cache.ts";
 
 const { env } = Deno;
@@ -41,8 +41,15 @@ slash.registerHandler("wiki", async (interaction) => {
     const embeds = [];
     const color = randomHexColor.next().value;
 
-    let desc = results.map((content: GitbookSearchNode) => {
-      const description = cache.getValue(content.uid);
+    
+    const contents: GitbookPage[] = await Promise.all(results.map(async (res) => {
+      return await client.fetchContentOfPage(res.path);
+    }));
+
+
+
+    let desc = results.map((content: GitbookSearchNode, index: number) => {
+      const description = contents[index].description;
       return `**[${content.title}](${client.iiGitbookBaseUrl}/${content.path})**\n${
         (description && description !== "")
           ? description
