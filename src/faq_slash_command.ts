@@ -31,10 +31,11 @@ slash.registerHandler("faq", async (interaction) => {
     console.log("=============================");
     const pages = results.pages;
 
-    const data = await client.fetchContentOfPage(`/faqs/${pages[0].path}`);
-    const contents =  data.pages.map((pg) => pg.title);
+    let data = await client.fetchContentOfPage(`/faqs/${pages[0].path}`);
+    let contents =  [data.pages.map((pg) => pg.title)];
 
-
+    data = await client.fetchContentOfPage(`/faqs/${pages[1].path}`);
+    contents.push(data.pages.map((pg) => pg.title));
     // const contents = await Promise.all(pages.map(async (page) => {
     //     const data = await client.fetchContentOfPage(`/faqs/${page.path}`);
     //     return data.pages.map((pg) => pg.title);
