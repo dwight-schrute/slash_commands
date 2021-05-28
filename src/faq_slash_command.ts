@@ -7,6 +7,7 @@ slash.init({
 
 const GITHUB_PAT = env.get('GITHUB_PAT') ?? '';
 const GITHUB_API_DISPATCH_URL = env.get('GITHUB_API_DISPATCH_URL') ?? '';
+const GITHUB_BRANCH = env.get('GITHUB_BRANCH');
 
 slash.registerHandler("faq", async (interaction) => {
   console.log("handling faq");
@@ -15,7 +16,8 @@ slash.registerHandler("faq", async (interaction) => {
       headers: {
         Authorization: `Bearer ${GITHUB_PAT}`
       },
-      method: 'POST'
+      method: 'POST',
+      body: JSON.stringify({"ref":`${GITHUB_BRANCH}`})
     });
 
     console.log(apiData.status);
