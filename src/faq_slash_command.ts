@@ -39,6 +39,9 @@ slash.registerHandler("faq", async (interaction) => {
 
     data = await client.fetchContentOfPage(`/faqs/${pages[2].path}`);
     contents.push(data.pages.map((pg) => pg.title));
+
+    data = await client.fetchContentOfPage(`/faqs/${pages[3].path}`);
+    contents.push(data.pages.map((pg) => pg.title));
     // const contents = [];
     // for (const page of pages) {
     //   const data = await client.fetchContentOfPage(`/faqs/${page.path}`);
