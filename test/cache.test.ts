@@ -10,7 +10,7 @@ Deno.test({
   name: "cache should refresh after TTL test",
   fn: async () => {
     const pageId = '-MUEnNPwNxmH8dSZmQfX';
-    const expectedDesc1 = "test description to be used in cache test initially";
+    const expectedDesc1 = "test description to be used in cache test initially ok";
     const client: GitbookSpaceClient = { get: () => { } } as unknown as GitbookSpaceClient;
     stub(client, "get", () => mock1);
     const time: FakeTime = new FakeTime();
