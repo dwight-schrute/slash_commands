@@ -12,8 +12,11 @@ export class Cache {
 
   public async fillData() {
     const bookContent: GitbookContent = await this.client.get("content");
-    const page: GitbookPage = bookContent.variants[0].page;
-    this.fillCacheRecursively(page);
+    const pages: GitbookPage[] = bookContent.pages;
+    for (const pg of pages) {
+      this.fillCacheRecursively(pg);
+    }
+    console.log("cacheKeyLength", Object.keys(this.data).length);
   }
 
   private setUpTimer = () => {

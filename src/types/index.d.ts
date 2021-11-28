@@ -52,8 +52,8 @@ export interface GitbookPage {
 export interface GitbookContent {
   uid: string;
   parents: string[];
-  variants: GitbookVariant[];
-  assets: GitbookAsset[];
+  pages: GitbookPage[];
+  files: GitbookAsset[];
 }
 
 export interface PathWeight {

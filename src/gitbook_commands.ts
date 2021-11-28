@@ -26,9 +26,12 @@ const cache = new Cache(client);
 await cache.fillData();
 
 slash.registerHandler("wiki", async (interaction) => {
+  console.log("interacting");
   const [query] = interaction.options;
+  console.log("query", query);
   try {
     let { results, timeTaken } = await client.searchSpace(query.value);
+    console.log("result", results);
     if (!results.length) {
       return interaction.reply({
         content: `Nothing found for your query: \`${query.value}\``,

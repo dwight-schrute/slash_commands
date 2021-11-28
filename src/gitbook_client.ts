@@ -49,6 +49,7 @@ export class GitbookSpaceClient {
       path,
       params,
     );
+    console.log("URL", url);
     const response = await fetch(url, { headers: this.headers });
     return response.json();
   }
@@ -68,6 +69,8 @@ export class GitbookSpaceClient {
       new URLSearchParams({ query }),
     )) as { results: GitbookSearchNode[] };
     const timeTaken = (Date.now() - startTime) / (1000);
+
+    console.log("searchSpace result", results);
     results = results
       .map((item) => {
         return {
